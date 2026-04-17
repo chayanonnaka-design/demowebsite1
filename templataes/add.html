@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="title">Add New Tea Menu</h2>
+
+<form class="form" method="POST" enctype="multipart/form-data">
+    <label>Tea Name</label>
+    <input type="text" name="name" required>
+
+    <label>Category</label>
+    <input type="text" name="category" placeholder="Milk Tea / Fruit Tea / Coffee" required>
+
+    <label>Price ($)</label>
+    <input type="number" step="0.01" name="price" required>
+
+    <label>Description</label>
+    <textarea name="description" rows="4"></textarea>
+
+    <label>Upload Image</label>
+    <input type="file" name="image">
+
+    <button type="submit" class="btn add-btn">Save Menu</button>
+    <a href="{{ url_for('index') }}" class="btn back-btn">Back</a>
+</form>
+{% endblock %}
