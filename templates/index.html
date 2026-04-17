@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="title">Our Tea Menu</h2>
+
+<div class="grid">
+    {% for tea in teas %}
+    <div class="card">
+
+        {% if tea[5] %}
+            <img src="{{ url_for('static', filename='uploads/' + tea[5]) }}" alt="tea image">
+        {% else %}
+            <img src="https://via.placeholder.com/300x200.png?text=Tea+Menu" alt="default image">
+        {% endif %}
+
+        <div class="card-body">
+            <h3>{{ tea[1] }}</h3>
+            <p class="category">{{ tea[2] }}</p>
+            <p class="price">${{ "%.2f"|format(tea[3]) }}</p>
+            <p class="desc">{{ tea[4] }}</p>
+
+            <div class="actions">
+                <a href="{{ url_for('edit', id=tea[0]) }}" class="btn edit-btn">Edit</a>
+                <a href="{{ url_for('delete', id=tea[0]) }}" class="btn delete-btn"
+                   onclick="return confirm('Are you sure you want to delete this menu?')">
+                   Delete
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if teas|length == 0 %}
+    <p class="empty">No menu available yet. Click "Add Menu" to start.</p>
+{% endif %}
+
+{% endblock %}

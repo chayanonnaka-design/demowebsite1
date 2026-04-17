@@ -1,1 +1,25 @@
+{% extends "base.html" %}
 
+{% block content %}
+<h2 class="title">Edit Tea Menu</h2>
+
+<form class="form" method="POST" enctype="multipart/form-data">
+    <label>Tea Name</label>
+    <input type="text" name="name" value="{{ tea[1] }}" required>
+
+    <label>Category</label>
+    <input type="text" name="category" value="{{ tea[2] }}" required>
+
+    <label>Price ($)</label>
+    <input type="number" step="0.01" name="price" value="{{ tea[3] }}" required>
+
+    <label>Description</label>
+    <textarea name="description" rows="4">{{ tea[4] }}</textarea>
+
+    <label>Replace Image (optional)</label>
+    <input type="file" name="image">
+
+    <button type="submit" class="btn edit-btn">Update Menu</button>
+    <a href="{{ url_for('index') }}" class="btn back-btn">Back</a>
+</form>
+{% endblock %}
